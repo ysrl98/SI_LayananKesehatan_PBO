@@ -96,13 +96,14 @@ public class database {
     
     public void ubahMember(String id, String jenis, String nama, String alamat, String telepon, String website){
         try{
-            String sql = "update ms_member set jenis = ?, nama = ?, alamat = ?, telepone = ?, website = ? where id = ?";
+            String sql = "update ms_member set jenis = ?, nama = ?, alamat = ?, telepon = ?, website = ? where id = ?";
             PreparedStatement perintah = connectionDB.prepareStatement(sql);
             perintah.setString(1, jenis);
             perintah.setString(2, nama);
             perintah.setString(3, alamat);
             perintah.setString(4, telepon);
             perintah.setString(5, website);
+            perintah.setString(6, id);
             perintah.executeUpdate();
             System.out.println("Data Berhasil Diubah");
         }
@@ -111,9 +112,9 @@ public class database {
         }
     }
     
-    public void hapusMember(String id, String jenis, String nama, String alamat, String telepon, String website){
+    public void hapusMember(String id){
         try{
-            String sql = "delete from ms_memmber where id = ? ";
+            String sql = "delete from ms_member where id = ? ";
             PreparedStatement perintah = connectionDB.prepareStatement(sql);
             perintah.setString(1, id);            
             perintah.executeUpdate();
@@ -192,6 +193,7 @@ public class database {
             perintah.setString(5, jam);
             perintah.setString(6, username);
             perintah.setString(7, waktu);
+            perintah.setInt(8, id);
             perintah.executeUpdate();
             System.out.println("Data Berhasil Diubah");
         }
@@ -200,7 +202,7 @@ public class database {
         }
     }
     
-    public void hapusJadwal(int id, String member_id, String nama_dokter, String spesialisasi, String hari, String jam, String username, String waktu){
+    public void hapusJadwal(int id){
         try{
             String sql = "delete from tr_jadwal_dokter where id = ? ";
             PreparedStatement perintah = connectionDB.prepareStatement(sql);
@@ -273,6 +275,7 @@ public class database {
             PreparedStatement perintah = connectionDB.prepareStatement(sql);
             perintah.setString(1, password);
             perintah.setString(2, member_id);
+            perintah.setString(3, username);
             perintah.executeUpdate();
             System.out.println("Data Berhasil Diubah");
         }
@@ -324,16 +327,16 @@ public class database {
         }
     }
     
-    public void simpanRuang(int id, String member_id, String nama_ruang, int tersedia, String username, String waktu){
+    public void simpanRuang(int id, String member_id, String nama_ruang, int tersedia, String username, String ket_waktu){
         try{
-            String sql = "insert into tr_info_ruangan (id, member_id, nama_ruang, tersedia, username, waktu) value (?,?,?,?,?,?)";
+            String sql = "insert into tr_info_ruangan (id, member_id, nama_ruang, tersedia, username, ket_waktu) value (?,?,?,?,?,?)";
             PreparedStatement perintah = connectionDB.prepareStatement(sql);
             perintah.setInt(1, id);
             perintah.setString(2, member_id);
             perintah.setString(3, nama_ruang);
             perintah.setInt(4, tersedia);
             perintah.setString(5, username);
-            perintah.setString(6, waktu);
+            perintah.setString(6, ket_waktu);
             
             perintah.executeUpdate();
             System.err.println("Data Berhasil Disimpan");
@@ -344,15 +347,16 @@ public class database {
         }
     }
     
-    public void ubahRuang(int id, String member_id, String nama_ruang, int tersedia, String username, String waktu){
+    public void ubahRuang(int id, String member_id, String nama_ruang, int tersedia, String username, String ket_waktu){
         try{
-            String sql = "update tr_info_ruangan set member_id = ?, nama_ruang = ?, tersedia = ?, username = ?, waktu = ? where id = ?";
+            String sql = "update tr_info_ruangan set member_id = ?, nama_ruang = ?, tersedia = ?, username = ?, ket_waktu = ? where id = ?";
             PreparedStatement perintah = connectionDB.prepareStatement(sql);
             perintah.setString(1, member_id);
             perintah.setString(2, nama_ruang);
             perintah.setInt(3, tersedia);
             perintah.setString(4, username);
-            perintah.setString(5, waktu);            
+            perintah.setString(5, ket_waktu);    
+            perintah.setInt(6, id);
             perintah.executeUpdate();
             System.out.println("Data Berhasil Diubah");
             
@@ -361,7 +365,7 @@ public class database {
             System.err.println(e.getMessage());
         }
     }   
-    public void hapusRuang(int id, String member_id, String nama_ruang, int tersedia, String username, String waktu){
+    public void hapusRuang(int id){
         try{
             String sql = "delete from tr_info_ruangan where id = ?";
             PreparedStatement perintah = connectionDB.prepareStatement(sql);

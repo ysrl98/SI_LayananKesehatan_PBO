@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import CRUD.database;
-
+import gui.mainframe;
 public class JadwalDokter  {
 //    private MsMember member;
 //
@@ -23,6 +23,13 @@ public class JadwalDokter  {
 //    }
 
     public static void main(String[] args) {
+        new mainframe().setVisible(true);
+        
+        
+        
+        
+        
+        
         // Sample data
 //        MsMember member1 = new MsMember(1, " Dokter ", " ", "Jl. Kesehatan No. 1", "0274-123456", "www.rspku.com");
 //        MsMember member2 = new MsMember(2, " Dokter ", "Apotek Sehat", "Jl. Sehat No. 2", "0275-654321", "www.apoteksehat.com");
@@ -76,8 +83,8 @@ public class JadwalDokter  {
 //        } else {
 //            System.out.println("Pilihan tidak valid.");
 //        }
-//        scanner.close();
-          database dbConnect = new database();
+////        scanner.close();
+//          database dbConnect = new database();
           
 //        dbConnect.simpanMember("2", "Apotek", "Zulfikar", "Pelaihari", "083111212221", "paranormal.com");
           //dbConnect.ubahMember("1", "Apoteker", "M. Yusril Maulana", "Kurau", "083150058587", "yusril.com");
